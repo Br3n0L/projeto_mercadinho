@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_login_page/components/login/custom_login_components.dart';
 import 'package:projeto_login_page/controlles/login_controller.dart';
+import 'package:projeto_login_page/widgets/custom_text_field_widgets.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -27,46 +29,24 @@ class _LoginPageState extends State<LoginPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Image.asset('assets/images/logo02.png'),
-              TextField(
-                decoration: const InputDecoration(labelText: "login"),
-                onChanged: _controller.setLogin,
+              CustomTextFieldWidgets(
+                label: 'Login',
+                onChaged: _controller.setLogin,
               ),
               const SizedBox(
                 height: 20,
               ),
-              Row(
-                children: [
-                  Expanded(
-                    child: TextField(
-                      decoration: const InputDecoration(labelText: "senha"),
-                      obscureText: true,
-                      onChanged: _controller.setPass,
-                    ),
-                  ),
-                ],
+              CustomTextFieldWidgets(
+                label: 'Senha',
+                onChaged: _controller.setPass,
+                obscureText: true,
               ),
               const SizedBox(
                 height: 50,
               ),
-              ValueListenableBuilder(
-                  valueListenable: _controller.inLoader,
-                  builder: (_, inLoader, __) => inLoader
-                      ? const CircularProgressIndicator()
-                      : ElevatedButton(
-                          onPressed: () {
-                            _controller.auth().then((result) {
-                              if (result) {
-                                Navigator.popAndPushNamed(context, '/home');
-                              } else {
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(const SnackBar(
-                                  content: Text('Falha ao realizar login'),
-                                  duration: Duration(seconds: 5),
-                                ));
-                              }
-                            });
-                          },
-                          child: const Text('Login'))),
+              CustomLoginButtonComponent(
+                loginController: _controller,
+              ),
               const SizedBox(
                 height: 50,
               ),
