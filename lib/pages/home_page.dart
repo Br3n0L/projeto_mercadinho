@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_login_page/controlles/home_controller.dart';
+import 'package:projeto_login_page/models/post.models.dart';
+import 'package:projeto_login_page/repositories/home_repository_mock.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -8,36 +11,24 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final HomeController _controller = HomeController(HomeRepositoryMock());
+  @override
+  void initState() {
+    super.initState();
+    _controller.fetch();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Bem-Vindo'),
-      ),
-      drawer: const Drawer(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 50,
-            ),
-            Text('Nossos Produtos'),
-            Divider(),
-            Text('Cereais'),
-            Divider(),
-            Text('Laticíneos'),
-            Divider(),
-            Text('Bebidas'),
-            Divider(),
-            Text('Massas'),
-            Divider(),
-            Text('Congelados'),
-            Divider(),
-            Text('Sorvetes'),
-            Divider(),
-            Text('Carnes'),
-          ],
-        ),
-      ),
+      body: ValueListenableBuilder<List<PostModel>>(
+          valueListenable: _controller.posts,
+          builder: (_, list, __) {
+            return ListView.builder(
+                itemCount: list.length,
+                itemBuilder: (_, idx) =>
+                    ListTile(title: Text(list[idx].title)));
+          }),
     );
   }
 }
