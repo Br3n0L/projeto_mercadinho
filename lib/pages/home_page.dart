@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_login_page/controlles/home_controller.dart';
 import 'package:projeto_login_page/models/post.models.dart';
-import 'package:projeto_login_page/repositories/home_repository_mock.dart';
+import 'package:projeto_login_page/repositories/home_repository_imp.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,7 +11,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final HomeController _controller = HomeController(HomeRepositoryMock());
+  final HomeController _controller = HomeController(HomeRepositoryImp());
   @override
   void initState() {
     super.initState();
@@ -21,13 +21,22 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Center(child: Text('Home Page')),
+      ),
       body: ValueListenableBuilder<List<PostModel>>(
           valueListenable: _controller.posts,
           builder: (_, list, __) {
-            return ListView.builder(
-                itemCount: list.length,
-                itemBuilder: (_, idx) =>
-                    ListTile(title: Text(list[idx].title)));
+            return ListView.separated(
+              separatorBuilder: (_, __) => const Divider(),
+              itemCount: list.length,
+              itemBuilder: (_, idx) => ListTile(
+                  leading: Text(list[idx].id.toString()),
+                  title: Text(list[idx].title),
+                  trailing: const Icon(Icons.arrow_forward),
+                  onTap: () => Navigator.of(context)
+                      .pushNamed('/details', arguments: list[idx])),
+            );
           }),
     );
   }
