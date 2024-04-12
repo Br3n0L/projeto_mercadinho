@@ -37,7 +37,7 @@ final List<Product> dummyProducts = [
       id: 'p5',
       title: ' Skol Lata 350ml',
       description: 'Cerveja Skol Lata 350ml.',
-      price: 3.50,
+      price: 3.55,
       imageUrl:
           'https://ferrosdoces.fbitsstatic.net/img/p/cerveja-skol-lata-350ml-cp03-75688/262199-1.jpg?w=420&h=420&v=no-change&qs=ignore',
       category: 'bebida'),

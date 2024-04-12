@@ -7,10 +7,10 @@ class LoginController {
   String? _pass;
   setPass(String value) => _pass = value;
 
-  Future<bool> auth() async {
-    inLoader.value = true;
+  Future<bool> auth(String user, String pass) async {
+    //inLoader.value = true;
     await Future.delayed(const Duration(seconds: 2));
-    inLoader.value = false;
-    return _login == 'admin' && _pass == "123";
+    //inLoader.value = false;
+    return user == 'admin' && pass == "123";
   }
 }

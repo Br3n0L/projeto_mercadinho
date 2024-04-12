@@ -11,12 +11,17 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final TextEditingController user = TextEditingController();
+  final TextEditingController pass = TextEditingController();
+  LoginController _controller = LoginController();
   @override
   Widget build(BuildContext context) {
     LoginController _controller = LoginController();
+    final size = MediaQuery.of(context).size.height * .9;
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
+          height: size,
           padding: const EdgeInsets.all(28),
           decoration: const BoxDecoration(
             gradient: LinearGradient(
@@ -30,22 +35,22 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               Image.asset('assets/images/logo02.png'),
               CustomTextFieldWidgets(
+                controller: user,
                 label: 'Login',
-                onChaged: _controller.setLogin,
               ),
               const SizedBox(
                 height: 20,
               ),
               CustomTextFieldWidgets(
+                controller: pass,
                 label: 'Senha',
-                onChaged: _controller.setPass,
                 obscureText: true,
               ),
               const SizedBox(
                 height: 50,
               ),
               CustomLoginButtonComponent(
-                loginController: _controller,
+                onpressed: onPressed(),
               ),
               const SizedBox(
                 height: 50,
@@ -56,5 +61,18 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  onPressed() {
+    _controller.auth(user.text, pass.text).then((result) {
+      if (result) {
+        Navigator.popAndPushNamed(context, '/home');
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('Falha ao realizar login'),
+          duration: Duration(seconds: 5),
+        ));
+      }
+    });
   }
 }
