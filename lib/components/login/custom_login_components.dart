@@ -3,7 +3,7 @@ import 'package:projeto_login_page/controlles/login_controller.dart';
 
 class CustomLoginButtonComponent extends StatelessWidget {
   final LoginController loginController;
-  CustomLoginButtonComponent({super.key, required this.loginController});
+  const CustomLoginButtonComponent({super.key, required this.loginController});
 
   @override
   Widget build(BuildContext context) {
