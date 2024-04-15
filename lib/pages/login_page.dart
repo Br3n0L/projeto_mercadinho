@@ -17,7 +17,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     LoginController _controller = LoginController();
-    final size = MediaQuery.of(context).size.height * .9;
+    final size = MediaQuery.of(context).size.height;
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -64,9 +64,9 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   onPressed() {
-    _controller.auth(user.text, pass.text).then((result) {
+    _controller.auth(user: user.text, pass: pass.text).then((result) {
       if (result) {
-        Navigator.popAndPushNamed(context, '/home');
+        Navigator.pushNamed(context, '/home');
       } else {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text('Falha ao realizar login'),

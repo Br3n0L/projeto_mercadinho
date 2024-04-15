@@ -5,7 +5,7 @@ final List<Product> dummyProducts = [
       id: 'p1',
       title: 'Cereal Matinal Nescal 200g',
       description: 'Cereal Matinal Nescal 200g',
-      price: 12.99,
+      price: 12.40,
       imageUrl:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhLHEq-rbskbxrKJUYv9gvhC8JsfKnI8JKiP3-KioLcw&s',
       category: 'cereal'),
@@ -13,7 +13,7 @@ final List<Product> dummyProducts = [
       id: 'p2',
       title: 'Cereal  Flakes',
       description: 'Cereal Matinal Corn Flakes',
-      price: 12.99,
+      price: 12.55,
       imageUrl:
           'https://www.extrabom.com.br/uploads/produtos/original/171570_extrabom_cereais-matinais_cereal-matinal-corn-flakes-190g_10.jpg',
       category: 'cereal'),
@@ -29,7 +29,7 @@ final List<Product> dummyProducts = [
       id: 'p4',
       title: 'Queijo Coalho Lamilk 200g',
       description: 'Queijo Coalho Lamilk 200g',
-      price: 23.99,
+      price: 23.50,
       imageUrl:
           'https://armazemnordestino.com.br/wp-content/uploads/2023/01/queijo-coalho-lamilk.jpg',
       category: 'Laticíneos'),
