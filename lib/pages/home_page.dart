@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_login_page/components/app_drawer.dart';
 import 'package:projeto_login_page/components/badgeer.dart';
 import 'package:projeto_login_page/components/product_grid.dart';
 import 'package:projeto_login_page/pages/cart.dart';
@@ -56,7 +57,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      //drawer: const DrawerWidgets(),
+      drawer: const AppDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: ProductGrid(_showFavoriteOnly),

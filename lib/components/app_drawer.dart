@@ -11,14 +11,22 @@ class AppDrawer extends StatelessWidget {
           AppBar(
             title: Text('Bem vindo Usuário '),
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-            leading: Icon(Icons.shop),
-            title: Text("Loja"),
+            leading: const Icon(Icons.shop),
+            title: const Text("Loja"),
             onTap: () {
               Navigator.pop(context);
             },
-          )
+          ),
+          const Divider(),
+          ListTile(
+            leading: const Icon(Icons.payment),
+            title: const Text("Pedidos"),
+            onTap: () {
+              Navigator.pushNamed(context, '/orders');
+            },
+          ),
         ],
       ),
     );
