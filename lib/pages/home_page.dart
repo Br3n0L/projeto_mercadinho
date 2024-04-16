@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      drawer: const DrawerWidgets(),
+      //drawer: const DrawerWidgets(),
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: ProductGrid(_showFavoriteOnly),

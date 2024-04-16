@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_login_page/pages/cart_item.dart';
+import 'package:projeto_login_page/pages/cart.dart';
+import 'package:projeto_login_page/models/cart_item.dart';
+import 'package:provider/provider.dart';
 
 class CartItemWidget extends StatelessWidget {
   final CarItem cartItem;
@@ -10,26 +12,31 @@ class CartItemWidget extends StatelessWidget {
     final double quantity = cartItem.quantity.toDouble();
 
     return Dismissible(
-      key: ValueKey(cartItem.id),
-      direction: DismissDirection.endToStart,
-      background: Container(
-        color: Theme.of(context).colorScheme.error,
-        child: Icon(
-          Icons.delete,
-          color: Colors.white,
-          size: 40,
+        key: ValueKey(cartItem.id),
+        direction: DismissDirection.endToStart,
+        background: Container(
+          color: Theme.of(context).colorScheme.error,
+          child: Icon(
+            Icons.delete,
+            color: Colors.white,
+            size: 40,
+          ),
+          alignment: Alignment.centerRight,
+          padding: const EdgeInsets.only(right: 20),
         ),
-        alignment: Alignment.centerRight,
-        padding: const EdgeInsets.only(right: 20),
-      ),
-      child: Card(
-        child: ListTile(
-          title: Text(cartItem.title),
-          subtitle: Text(
-              'Total: R\$ ${(cartItem.price * quantity).toStringAsFixed(2)}'),
-          trailing: Text('${quantity.toStringAsFixed(2)} x'),
+        child: Card(
+          child: ListTile(
+            title: Text(cartItem.title),
+            subtitle: Text(
+                'Total: R\$ ${(cartItem.price * quantity).toStringAsFixed(2)}'),
+            trailing: Text('${quantity.toStringAsFixed(2)} x'),
+          ),
         ),
-      ),
-    );
+        onDismissed: (_) {
+          Provider.of<Cart>(
+            context,
+            listen: false,
+          ).removeItem(cartItem.productId);
+        });
   }
 }
