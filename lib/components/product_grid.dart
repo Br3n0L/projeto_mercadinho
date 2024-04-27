@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_login_page/components/product_item.dart';
+import 'package:projeto_login_page/components/product_grid_item.dart';
 import 'package:projeto_login_page/models/product.dart';
 import 'package:projeto_login_page/models/product_list.dart';
 import 'package:provider/provider.dart';
@@ -25,6 +25,6 @@ class ProductGrid extends StatelessWidget {
           mainAxisSpacing: 10,
         ),
         itemBuilder: (ctx, i) => ChangeNotifierProvider.value(
-            value: loadedProducts[i], child: ProductItem()));
+            value: loadedProducts[i], child: ProductGridItem()));
   }
 }

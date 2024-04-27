@@ -4,8 +4,8 @@ import 'package:projeto_login_page/pages/cart.dart';
 
 import 'package:provider/provider.dart';
 
-class ProductItem extends StatelessWidget {
-  ProductItem({
+class ProductGridItem extends StatelessWidget {
+  ProductGridItem({
     super.key,
   });
 
@@ -39,6 +39,14 @@ class ProductItem extends StatelessWidget {
             trailing: IconButton(
                 onPressed: () {
                   cart.addItem(product);
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: const Text('O produto foi adcionado com sucesso!'),
+                    duration: const Duration(seconds: 1),
+                    action: SnackBarAction(
+                      label: 'DESFAZER',
+                      onPressed: () {},
+                    ),
+                  ));
                 },
                 icon: Icon(Icons.shopping_cart)),
           ),
